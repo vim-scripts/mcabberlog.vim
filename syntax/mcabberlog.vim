@@ -1,10 +1,13 @@
 " Vim language File
 " Language:      mcabber history file
 " Maintainger:   Thomas Ba
-" Version:       0.3
-" Last Change:   2011-09-03
-" URL:           http://thomasba.de/page/blog/21/vim_colors_for_mcabber_logfiles
+" Version:       0.4
+" Last Change:   2011-09-05
+" URL:           http://www.vim.org/scripts/script.php?script_id=3726
 "
+" Version 0.4
+"   • Fixed: show own kicks/bans correct
+"   • Fixed: Handling for kicks/bans + reason
 " Version 0.3:
 "   • Fix for non MUC
 
@@ -29,9 +32,9 @@ syn match mcabberTime "[0-2][0-9]:[0-5][0-9]:[0-5][0-9]" skipwhite contained
 syn match mcabberHeaderSend "^MS [12][90][0-9]\{2\}[01][0-9][0-3][0-9]T[0-2][0-9]:[0-5][0-9]:[0-5][0-9]Z [0-9]\{3\}" nextgroup=@mcabberRegions contains=mcabberDate,mcabberTime skipwhite
 
 " Servermessages, kicks, joins...
-syn region mcabberMsgRegion start="[^< ]" end="$" contained contains=@mcabberMsg
+syn region mcabberMsgRegion start="[^<]" end="$" contained contains=@mcabberMsgs
 syn match mcabberMsg     "\(\~ \|The topic\|You have\|.* has set the topic to\).*" contained
-syn match mcabberMsgNick ".* \(has joined\|has left\|is now known as .*\)$" contained
+syn match mcabberMsgNick ".* \(has joined\|has left\|has left: .*\|is now known as .*\|ha\(s\|ve\) been .*\(\nReason: .*\)\?\)$" contained
 
 " Message nicks
 syn region mcabberNickRegion start="<" end=">" contained contains=@mcabberNicks
